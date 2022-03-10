@@ -4,7 +4,7 @@ newAccordion = document.getElementById('newAccordion')
 source = "e5d227ee97c34442969b2842b32e80d8"
 
 const xhr = new XMLHttpRequest();
-xhr.open('GET', `https://newsapi.org/v2/everything?q=tesla&from=2022-02-09&sortBy=publishedAt&apiKey=${source}`)
+xhr.open('GET', `https://newsapi.org/v2/everything?q=india&from=2022-02-09&sortBy=publishedAt&apiKey=${source}`)
 
 xhr.onload = function () {
     if (this.status === 200) {
@@ -14,21 +14,14 @@ xhr.onload = function () {
    
         articles.forEach(function(element){
      
-                                let news = `<div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                            aria-expanded="true" aria-controls="collapseOne">
-                            ${element["title"]}
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            ${element["description"]} <a href="${element.url}" target="black" >Read more</a>
-                        </div>
-                        
-                    </div>
-                    </div>`;
+                                let news = `<div class="card my-3 px-3 container" style="width: 58rem;"><h1 class="card-title m-3">${element.title}</h1>
+                                <img src="${element.urlToImage ?element.urlToImage:"Image_not_available.png" }" class="card-img-top " alt="">
+                                <div class="card-body">
+                                  
+                                  <p class="card-text">${element.description}</p>
+                                  <a href="${element.url}" target="black" class="btn btn-primary">Read more</a>
+                                </div>
+                              </div>`;
                     newsHtml += news;
           });
           
